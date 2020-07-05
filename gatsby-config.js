@@ -16,9 +16,9 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: process.env.DEPLOY_URL ? "https://infinite-hamlet-43704.herokuapp.com" : "http://localhost:1337",
+        apiURL: "http://localhost:1337",
         queryLimit: 1000, // Default to 100
-        contentTypes: [`user`],
+        contentTypes: [`user`, `article`],
       },
     },
     `gatsby-transformer-sharp`,

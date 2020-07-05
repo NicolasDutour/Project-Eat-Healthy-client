@@ -1,22 +1,46 @@
 import React from "react"
-import { Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+const IndexPage = () => {
+  const data = useStaticQuery(graphql`
+    query ArticlesQuery {
+      allStrapiArticle {
+        nodes {
+          title
+          content
+          created_at
+          strapiId
+          author {
+            username
+          }
+          description
+        }
+      }
+    }
+  `)
+  return (
+
+    <Layout>
+      <SEO title="Home" />
+      <h1>Hi people</h1>
+      {
+        data.allStrapiArticle.nodes.map(article => {
+          return (
+            <div key={article.strapiId}>
+              <p> {article.title} </p>
+              <p> {article.content} </p>
+              <p> {article.author.username} </p>
+              <p> {article.created_at} </p>
+              <p> {article.description} </p>
+            </div>
+          )
+        })
+      }
+    </Layout>
+  )
+}
 
 export default IndexPage
