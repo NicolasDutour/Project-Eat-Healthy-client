@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Eat Healthy`,
+    description: `E-Commerce Website`,
+    author: `Nicolas Dutour`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -16,9 +16,9 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: "http://localhost:1337",
+        apiURL: `http://localhost:1337`,
         queryLimit: 1000, // Default to 100
-        contentTypes: [`user`, `article`],
+        contentTypes: [`product`, `user`],
       },
     },
     `gatsby-transformer-sharp`,
